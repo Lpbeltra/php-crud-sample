@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="php" href="add_action.php">
+</head>
+<body>
+    <h2 style="text-align: center;">Cadastro de usuários</h2>
+    <div id="maindiv">
+        <form id="form" method="POST" action="add_action.php">
+            <label>
+                Nome:
+                <input type="text" name="name"/>
+            </label>
+            <br/><br/>
+            <label>
+                Email:
+                <input type="email" name="email"/>
+            </label>
+            <br/><br/>
+            <label>
+                Senha:
+                <input type="password" name="password"/>
+            </label>
+            <br/><br/>
+            <input type="submit" value="Cadastrar"/>
+        </form>
+    </div>
+    <a style="text-align: center;" href="index.html">Voltar</a>
+</body>
+</html>
