@@ -12,7 +12,7 @@ if ($name && $email && $password) {
     $sql->bindValue(':email', $email);
     $sql->bindValue(':password', $password);
     $sql->execute();
-    header("Location: index.html");
+    header("Location: index.php");
 } else {
     header("Location: add.html");
     exit;
