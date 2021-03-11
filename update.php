@@ -1,32 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update</title>
-    <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-    <h1 style="text-align: center;">Alterar senha</h1><br/>
+<?php
+require 'config.php';
 
-    <form id="form" method="POST" action="update_action.php">
-        <label>
-            E-mail cadastrado:
-            <input type="text" name="email">
-        </label><br></br>
+$info = [];
+$id = filter_input(INPUT_GET, 'id');
+if($id) {
+    $sql = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+    $sql->bindValue(':id', $id);
+    $sql->execute();
 
-        <label>
-            Senha atual:
-            <input type="password" name="password">
-        </label><br></br>
+    if($sql->rowCount() > 0) {
+        $info = $sql->fetch(PDO::FETCH_ASSOC);
+    }
+} else {
+    header("Location: list.php");
+    exit;
+}
+?>
 
-        <label>
-            Nova senha:
-            <input type="password" name="new_password">
-        </label><br></br>
-        <input type="submit" value="Alterar senha">
-    </form>
-    <a href="index.php">Voltar</a>
-</body>
-</html>
+<form id="form" method="POST" action="update_action.php">
+    <input type="hidden" name="id" value="<?=$info['id'];?>"/>
+    <label>
+        Nome:
+        <input type="text" name="name" value="<?=$info['name'];?>">
+    </label><br></br>
+
+    <label>
+        Email:
+        <input type="text" name="email" value="<?=$info['email'];?>">
+    </label><br></br>
+
+    <label>
+        Senha:
+        <input type="password" name="password" value="<?=$info['password'];?>">
+    </label><br></br>
+    <input type="submit" value="Alterar">
+</form>
+<a href="index.php">Voltar</a>

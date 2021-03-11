@@ -11,7 +11,7 @@ if($email && $password) {
     $sql->execute();
 
     if ($sql->rowCount() > 0) {
-        header("Location: home.html");
+        header("Location: list.php");
     } else {
         header("Location: index.php");
     }
